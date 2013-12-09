@@ -81,7 +81,7 @@ i.e. --> curl -XPUT http://localhost:8888/order/1/pay -H "Content-Type: applicat
 
 (17) Amend the codebase so that it is possible to change the price of an item, supporting unit tests will need to be written as part of the task
 
-(18) When calculating the change for a historic receipt, after an item has had a price change, the receipt will show an incorrect amount for the change, introduce a new model type called LineItem. This LineItem will replace Item within an Order, so when an item is added to an order from the OrderController and passed to the OrderService, a LineItem will be created, this should have a reference to the Item, its Current Price and a quantity (which will be of 1). Amend the code base to reflect this, unit tests will need to be written as part of the task.
+(18) When calculating the change for a historic receipt, after an item has had a price change, the receipt will show an incorrect amount for the change, introduce a new model type called LineItem. This LineItem will replace Item within an Order, so when an item is added to an order from the OrderController and passed to the OrderService, a LineItem will be created, this should have a reference to the Item, its Current Price and a quantity (which will be of 1). Amend the code base to reflect this, unit tests will need to be written as part of the task
 
 (19) As a LineItem can now have a quantity, amend the codebase so that a quantity value can be given on the OrderController when adding an Item, also make sure that when the Order is persisted that there can not be duplicate LineItems for the same Item, so if a duplicate Item is added to an order, the quantity for the already existing lineitem is increased. supporting unit tests will need to be written as part of the task
 
