@@ -17,7 +17,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>0.5.0.M6</version>
+        <version>1.0.0.RC3</version>
     </parent>
 
 	<properties>
@@ -59,13 +59,19 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
 		</plugins>
 	</build>
 
     <repositories>
         <repository>
-            <id>spring-libs-milestone</id>
-            <url>http://repo.springsource.org/libs-snapshot</url>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -74,8 +80,9 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>spring-libs-milestone</id>
-            <url>http://repo.springsource.org/libs-snapshot</url>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

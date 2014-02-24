@@ -1,69 +1,73 @@
 (1) Read the Code
 
 (2) Compile the Code
+mvn clean package
 
 (3) Run the Main Method
+java -jar target/answer-king-0.0.1-SNAPSHOT.war
+or
+mvn exec:java -Dexec.mainClass="answer.king.config.AppConfig"
 
-(4) Create Burger  
-Using a REST client  
-URL: http://localhost:8888/item/  
-Method: POST  
-Headers: Content-Type: application/json  
-Content: {"name":"burger", "price":"1.99"}  
+(4) Create Burger
+Using a REST client
+URL: http://localhost:8888/item/
+Method: POST
+Headers: Content-Type: application/json
+Content: {"name":"burger", "price":"1.99"}
 
-i.e. --> curl http://localhost:8888/item/ -H "Content-Type: application/json" -d '{"name":"burger", "price":"1.99"}'  
+i.e. --> curl http://localhost:8888/item/ -H "Content-Type: application/json" -d '{"name":"burger", "price":"1.99"}'
 
-(5) Create Chips  
-Using a REST client  
-URL: http://localhost:8888/item/  
-Method: POST  
-Headers: Content-Type: application/json  
-Content: {"name":"chips", "price":"0.99"}  
+(5) Create Chips
+Using a REST client
+URL: http://localhost:8888/item/
+Method: POST
+Headers: Content-Type: application/json
+Content: {"name":"chips", "price":"0.99"}
 
 i.e. --> curl http://localhost:8888/item/ -H "Content-Type: application/json" -d '{"name":"chips", "price":"0.99"}'
 
-(6) List Items  
-Using a REST client  
-URL: http://localhost:8888/item/  
-Method: GET  
-Headers: Content-Type: application/json  
-Content: <None>  
+(6) List Items
+Using a REST client
+URL: http://localhost:8888/item/
+Method: GET
+Headers: Content-Type: application/json
+Content: <None>
 
 i.e. --> curl http://localhost:8888/item/ -H "Content-Type: application/json"
 
-(7) Create Order  
-Using a REST client  
-URL: http://localhost:8888/order/  
-Method: POST  
-Headers: Content-Type: application/json  
-Content: <None>  
+(7) Create Order
+Using a REST client
+URL: http://localhost:8888/order/
+Method: POST
+Headers: Content-Type: application/json
+Content: <None>
 
 i.e. --> curl -XPOST http://localhost:8888/order/ -H "Content-Type: application/json"
 
-(8) Add Burger to Order  
-Using a REST client  
-URL: http://localhost:8888/order/1/addItem/1  
-Method: PUT  
-Headers: Content-Type: application/json  
-Content: <None>  
+(8) Add Burger to Order
+Using a REST client
+URL: http://localhost:8888/order/1/addItem/1
+Method: PUT
+Headers: Content-Type: application/json
+Content: <None>
 
 i.e. --> curl -XPUT http://localhost:8888/order/1/addItem/1 -H "Content-Type: application/json"
 
-(9) Add Chips to Order  
-Using a REST client  
-URL: http://localhost:8888/order/1/addItem/2  
-Method: PUT  
-Headers: Content-Type: application/json  
-Content: <None>  
+(9) Add Chips to Order
+Using a REST client
+URL: http://localhost:8888/order/1/addItem/2
+Method: PUT
+Headers: Content-Type: application/json
+Content: <None>
 
 i.e. --> curl -XPUT http://localhost:8888/order/1/addItem/2 -H "Content-Type: application/json"
 
-(10) Pay for Order  
-Using a REST client  
-URL: http://localhost:8888/order/1/pay  
-Method: PUT  
-Headers: Content-Type: application/json  
-Content: "50.00"  
+(10) Pay for Order
+Using a REST client
+URL: http://localhost:8888/order/1/pay
+Method: PUT
+Headers: Content-Type: application/json
+Content: "50.00"
 
 i.e. --> curl -XPUT http://localhost:8888/order/1/pay -H "Content-Type: application/json" -d '"50.00"'
 
