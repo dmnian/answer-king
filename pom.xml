@@ -6,7 +6,7 @@
 
 	<groupId>com.answerconsulting</groupId>
 	<artifactId>answer-king</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 
     <packaging>war</packaging>
 
@@ -17,11 +17,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.0.0.RC3</version>
+        <version>1.2.5.RELEASE</version>
     </parent>
 
 	<properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
 	</properties>
 
     <dependencies>
@@ -66,26 +66,4 @@
             </plugin>
 		</plugins>
 	</build>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

@@ -1,3 +1,6 @@
+Note:
+In order to run the project, you must first have a version of Java's JDK8 installed on your machine.
+
 (1) Read the Code
 
 (2) Compile the Code
@@ -6,7 +9,7 @@ mvn clean package
 (3) Run the Main Method
 java -jar target/answer-king-0.0.1-SNAPSHOT.war
 or
-mvn exec:java -Dexec.mainClass="answer.king.config.AppConfig"
+mvn exec:java -Dexec.mainClass="answer.king.AppConfig"
 
 (4) Create Burger
 Using a REST client
