@@ -10,13 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import answer.king.model.Item;
 import answer.king.model.Order;
-import answer.king.model.Reciept;
+import answer.king.model.Receipt;
 import answer.king.repo.ItemRepository;
 import answer.king.repo.OrderRepository;
 
 @Service
 @Transactional
 public class OrderService {
+
 	@Autowired
 	private OrderRepository orderRepository;
 
@@ -25,9 +26,7 @@ public class OrderService {
 
 	public List<Order> getAll() {
 		List<Order> orders = new ArrayList<>();
-		for(Order order : orderRepository.findAll()) {
-			orders.add(order);
-		}
+		orders.addAll(orderRepository.findAll());
 		return orders;
 	}
 
@@ -45,12 +44,12 @@ public class OrderService {
 		orderRepository.save(order);
 	}
 
-	public Reciept pay(Long id, BigDecimal payment) {
+	public Receipt pay(Long id, BigDecimal payment) {
 		Order order = orderRepository.findOne(id);
 
-		Reciept reciept = new Reciept();
-		reciept.setPayment(payment);
-		reciept.setOrder(order);
-		return reciept;
+		Receipt receipt = new Receipt();
+		receipt.setPayment(payment);
+		receipt.setOrder(order);
+		return receipt;
 	}
 }

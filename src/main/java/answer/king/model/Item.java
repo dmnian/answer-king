@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="T_ITEM")
+@Table(name = "T_ITEM")
 public class Item {
 
     @Id
@@ -26,7 +26,7 @@ public class Item {
     private BigDecimal price;
 
     @JsonIgnore
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

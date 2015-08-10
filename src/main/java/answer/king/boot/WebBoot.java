@@ -11,5 +11,4 @@ public class WebBoot extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(AppConfig.class);
     }
-
 }

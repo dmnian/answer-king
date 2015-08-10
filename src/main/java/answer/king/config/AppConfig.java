@@ -27,9 +27,10 @@ import answer.king.service.ItemService;
 @Configuration
 @EnableAutoConfiguration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {ItemRepository.class})
-@ComponentScan(basePackageClasses = {ItemController.class, ItemService.class, Item.class})
+@EnableJpaRepositories(basePackageClasses = { ItemRepository.class })
+@ComponentScan(basePackageClasses = { ItemController.class, ItemService.class, Item.class })
 public class AppConfig {
+
 	public static void main(String[] args) {
         SpringApplication.run(AppConfig.class, args);
     }

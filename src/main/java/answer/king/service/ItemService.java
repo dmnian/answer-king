@@ -13,14 +13,13 @@ import answer.king.repo.ItemRepository;
 @Service
 @Transactional
 public class ItemService {
+
 	@Autowired
 	private ItemRepository itemRepository;
 
 	public List<Item> getAll() {
 		List<Item> items = new ArrayList<>();
-		for(Item item : itemRepository.findAll()) {
-			items.add(item);
-		}
+		items.addAll(itemRepository.findAll());
 		return items;
 	}
 

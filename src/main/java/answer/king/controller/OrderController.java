@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import answer.king.model.Order;
-import answer.king.model.Reciept;
+import answer.king.model.Receipt;
 import answer.king.service.OrderService;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
+
 	@Autowired
 	private OrderService orderService;
 
@@ -27,8 +28,7 @@ public class OrderController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public Order create() {
-		Order order = new Order();
-		return orderService.save(order);
+		return orderService.save(new Order());
 	}
 
 	@RequestMapping(value = "/{id}/addItem/{itemId}", method = RequestMethod.PUT)
@@ -37,7 +37,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/{id}/pay", method = RequestMethod.PUT)
-	public Reciept pay(@PathVariable("id") Long id, @RequestBody BigDecimal payment) {
+	public Receipt pay(@PathVariable("id") Long id, @RequestBody BigDecimal payment) {
 		return orderService.pay(id, payment);
 	}
 }

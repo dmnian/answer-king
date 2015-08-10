@@ -1,9 +1,8 @@
 package answer.king.model;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class Reciept {
+public class Receipt {
 
 	private BigDecimal payment;
 
@@ -26,14 +25,12 @@ public class Reciept {
 	}
 
 	public BigDecimal getChange() {
-		List<Item> items = order.getItems();
 		BigDecimal totalOrderPrice = BigDecimal.ZERO;
-		for(Item item : items) {
+
+		for (Item item : order.getItems()) {
 			totalOrderPrice = totalOrderPrice.add(item.getPrice());
 		}
 
-		BigDecimal change = payment.subtract(totalOrderPrice);
-
-		return change;
+		return payment.subtract(totalOrderPrice);
 	}
 }
