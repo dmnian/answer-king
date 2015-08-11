@@ -25,9 +25,7 @@ public class OrderService {
 	private ItemRepository itemRepository;
 
 	public List<Order> getAll() {
-		List<Order> orders = new ArrayList<>();
-		orders.addAll(orderRepository.findAll());
-		return orders;
+		return orderRepository.findAll();
 	}
 
 	public Order save(Order order) {

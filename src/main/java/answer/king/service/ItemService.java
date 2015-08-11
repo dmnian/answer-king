@@ -1,6 +1,5 @@
 package answer.king.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,7 @@ public class ItemService {
 	private ItemRepository itemRepository;
 
 	public List<Item> getAll() {
-		List<Item> items = new ArrayList<>();
-		items.addAll(itemRepository.findAll());
-		return items;
+		return itemRepository.findAll();
 	}
 
 	public Item save(Item item) {
