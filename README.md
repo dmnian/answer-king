@@ -1,5 +1,6 @@
 Note:
-In order to run the project, you must first have a version of Java's JDK8 installed on your machine.
+- In order to run the project, you must first have a version of Java's JDK8 installed on your machine.
+- Navigate to localhost:8888/index.html in order to test the API and view the H2 console
 
 (1) Read the Code
 
