@@ -1,6 +1,6 @@
 Note:
 - In order to run the project, you must first have a version of Java's JDK8 installed on your machine.
-- Navigate to localhost:8888/index.html in order to test the API and view the H2 console
+- The curl commands for tasks 1-10, outlined below, are listed for completeness. You may instead choose to use the GUI provided with Swagger. A link to swagger can be found on the landing page.
 
 (1) Read the Code
 
