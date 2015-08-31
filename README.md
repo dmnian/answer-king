@@ -1,16 +1,20 @@
-Note:
+# ANSWER KING
+Would you like fries with that?
+
+### Note:
 - In order to run the project, you must first have a version of Java's JDK8 installed on your machine.
 - The curl commands for tasks 1-10, outlined below, are listed for completeness. You may instead choose to use the GUI provided with Swagger. A link to swagger can be found on the landing page.
 
+### Tasks
 (1) Read the Code
 
 (2) Compile the Code
 mvn clean package
 
 (3) Run the Main Method
-java -jar target/answer-king-0.0.1-SNAPSHOT.war
+java -jar target/answer-king-0.2.0-SNAPSHOT.war
 or
-mvn exec:java -Dexec.mainClass="answer.king.AppConfig"
+mvn exec:java -Dexec.mainClass="answer.king.Application"
 
 (4) Create Burger
 Using a REST client
