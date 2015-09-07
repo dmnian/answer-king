@@ -17,18 +17,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "T_ITEM")
 public class Item {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    private String name;
+	private String name;
 
-    private BigDecimal price;
+	private BigDecimal price;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ORDER_ID")
+	private Order order;
 
 	public Long getId() {
 		return id;

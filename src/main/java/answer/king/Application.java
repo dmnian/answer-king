@@ -21,8 +21,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+		SpringApplication.run(Application.class, args);
+	}
 
 	@Bean
 	public ServletRegistrationBean h2ServletRegistration() {
