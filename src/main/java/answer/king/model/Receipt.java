@@ -26,9 +26,9 @@ public class Receipt {
 
 	public BigDecimal getChange() {
 		BigDecimal totalOrderPrice = order.getItems()
-										  .stream()
-										  .map(Item::getPrice)
-										  .reduce(BigDecimal.ZERO, BigDecimal::add);
+			.stream()
+			.map(Item::getPrice)
+			.reduce(BigDecimal.ZERO, BigDecimal::add);
 
 		return payment.subtract(totalOrderPrice);
 	}
