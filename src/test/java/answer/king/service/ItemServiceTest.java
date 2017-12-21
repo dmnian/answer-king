@@ -29,7 +29,6 @@ public class ItemServiceTest {
 
     @Test
     public void saveExecutedTest() throws Exception {
-        when(itemRepositoryMock.save(any(Item.class))).thenReturn(null);
 
         itemService.save(new Item());
 
