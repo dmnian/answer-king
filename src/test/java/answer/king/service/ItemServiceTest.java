@@ -3,36 +3,42 @@ package answer.king.service;
 
 import answer.king.model.Item;
 import answer.king.repo.ItemRepository;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.rules.ExpectedException;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 
-@RunWith(SpringRunner.class)
-@DataJpaTest
 public class ItemServiceTest {
 
-    @Autowired
-    private TestEntityManager entityManager;
+    private ItemService itemService;
+    private ItemRepository itemRepositoryMock;
 
-    @Autowired
-    private ItemRepository itemRepository;
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
-//    @Autowired
-//    private ItemService itemService;
+    @Before
+    public void setUp() throws Exception {
+        itemRepositoryMock = mock(ItemRepository.class);
+
+        itemService = new ItemService(itemRepositoryMock);
+    }
 
     @Test
-    public void name() throws Exception {
-        Item entity = new Item();
-        entity.setName("some item");
+    public void saveExecutedTest() throws Exception {
+        when(itemRepositoryMock.save(any(Item.class))).thenReturn(null);
 
-        entityManager.persist(entity);
+        itemService.save(new Item());
 
-//        List<Item> all = itemService.getAll();
-//
-//        System.out.println(all);
+        verify(itemRepositoryMock, times(1)).save(any(Item.class));
+    }
+
+    @Test
+    public void itemShouldNotNullTest() throws Exception {
+        thrown.expect(NullPointerException.class);
+        itemService.save(null);
     }
 }
