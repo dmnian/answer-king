@@ -5,8 +5,11 @@ import answer.king.model.Order;
 import answer.king.model.Receipt;
 import answer.king.repo.ItemRepository;
 import answer.king.repo.OrderRepository;
+import answer.king.repo.ReceiptRepository;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,13 +26,18 @@ public class OrderServiceTest {
 
     private OrderRepository orderRepositoryMock;
     private ItemRepository itemRepositoryMock;
+    private ReceiptRepository receiptRepositoryMock;
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
         orderRepositoryMock = mock(OrderRepository.class);
         itemRepositoryMock = mock(ItemRepository.class);
+        receiptRepositoryMock = mock(ReceiptRepository.class);
 
-        orderService = new OrderService(orderRepositoryMock, itemRepositoryMock);
+        orderService = new OrderService(orderRepositoryMock, itemRepositoryMock, receiptRepositoryMock);
     }
 
     @Test
@@ -90,5 +98,38 @@ public class OrderServiceTest {
         orderService.pay(1L, new BigDecimal("99.99"));
 
         assertTrue(order.getPaid());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenNotEnoughPaid() throws Exception {
+        thrown.expect(RuntimeException.class);
+        Order order = new Order();
+
+        Item item = new Item();
+        item.setPrice(new BigDecimal("100.00"));
+
+        order.setItems(Arrays.asList(item));
+
+
+        when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
+
+        orderService.pay(1L, new BigDecimal("1.00"));
+    }
+
+
+    @Test
+    public void shouldSaveReceipt() throws Exception {
+        Order order = new Order();
+
+        Item item = new Item();
+        item.setPrice(new BigDecimal("100.00"));
+
+        order.setItems(Arrays.asList(item));
+
+        when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
+
+        orderService.pay(1L, new BigDecimal("100.00"));
+
+        verify(receiptRepositoryMock, times(1)).save(any(Receipt.class));
     }
 }

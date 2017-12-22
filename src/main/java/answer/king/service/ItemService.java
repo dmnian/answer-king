@@ -1,17 +1,16 @@
 package answer.king.service;
 
-import java.util.List;
-
+import answer.king.model.Item;
+import answer.king.repo.ItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import answer.king.model.Item;
-import answer.king.repo.ItemRepository;
-
 import javax.validation.ConstraintViolationException;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 @Transactional
@@ -41,5 +40,11 @@ public class ItemService {
 		}
 
 		return saved;
+	}
+
+	public void updatePrice(Long id, BigDecimal updatedPrice) {
+		Item item = itemRepository.findOne(id);
+
+		item.setPrice(updatedPrice);
 	}
 }

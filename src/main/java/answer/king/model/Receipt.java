@@ -1,11 +1,25 @@
 package answer.king.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "T_RECEIPT")
 public class Receipt {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(precision = 7, scale = 2)
+    @NotNull
+    @DecimalMin(value = "0.01")
     private BigDecimal payment;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     public Order getOrder() {

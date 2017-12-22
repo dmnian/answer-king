@@ -5,6 +5,7 @@ import answer.king.model.Order;
 import answer.king.model.Receipt;
 import answer.king.repo.ItemRepository;
 import answer.king.repo.OrderRepository;
+import answer.king.repo.ReceiptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +19,13 @@ public class OrderService {
 
     private OrderRepository orderRepository;
     private ItemRepository itemRepository;
+    private ReceiptRepository receiptRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, ItemRepository itemRepository) {
+    public OrderService(OrderRepository orderRepository, ItemRepository itemRepository, ReceiptRepository receiptRepository) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
+        this.receiptRepository = receiptRepository;
     }
 
     public List<Order> getAll() {
@@ -52,7 +55,11 @@ public class OrderService {
 
         if (receipt.getChange().compareTo(new BigDecimal("0.00")) != -1) {
             order.setPaid(true);
+        } else {
+            throw new RuntimeException("Not enough money exception");
         }
+
+        receiptRepository.save(receipt);
 
         return receipt;
     }
