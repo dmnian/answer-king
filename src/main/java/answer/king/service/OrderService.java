@@ -49,6 +49,11 @@ public class OrderService {
         Receipt receipt = new Receipt();
         receipt.setPayment(payment);
         receipt.setOrder(order);
+
+        if (receipt.getChange().compareTo(new BigDecimal("0.00")) != -1) {
+            order.setPaid(true);
+        }
+
         return receipt;
     }
 }

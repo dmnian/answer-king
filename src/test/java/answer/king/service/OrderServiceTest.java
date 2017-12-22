@@ -10,8 +10,10 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
@@ -60,6 +62,7 @@ public class OrderServiceTest {
     @Test
     public void payTest() throws Exception {
         Order order = new Order();
+        order.setItems(new ArrayList<>());
 
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
 
@@ -70,5 +73,22 @@ public class OrderServiceTest {
         Receipt payResult = orderService.pay(1L, new BigDecimal("99.99"));
 
         assertEquals(payExpected, payResult);
+    }
+
+    @Test
+    public void shouldUpdatePaidFlagInOrder() throws Exception {
+        Order order = new Order();
+
+        Item item = new Item();
+        item.setPrice(new BigDecimal("99.00"));
+
+        order.setItems(Arrays.asList(item));
+
+
+        when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
+
+        orderService.pay(1L, new BigDecimal("99.99"));
+
+        assertTrue(order.getPaid());
     }
 }
