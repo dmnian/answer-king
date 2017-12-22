@@ -33,8 +33,10 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public void updatePrice(@PathVariable("id") Long id, @RequestBody BigDecimal price) {
+    public Item updatePrice(@PathVariable("id") Long id, @RequestBody BigDecimal price) {
         logger.info("updatedPrice: {}", price);
-        itemService.updatePrice(id, price);
+        Item item = itemService.updatePrice(id, price);
+
+        return item;
     }
 }
