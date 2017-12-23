@@ -1,115 +1,175 @@
 {
-  "variables": [],
-  "info": {
-    "name": "AnsTest",
-    "_postman_id": "7ba4d454-ee56-8ca8-1524-359e9a925255",
-    "description": "",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "localhost:8888/order",
-      "request": {
-        "url": "localhost:8888/order",
-        "method": "POST",
-        "header": [],
-        "body": {},
-        "description": ""
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8888/order",
-      "request": {
-        "url": "localhost:8888/order",
-        "method": "GET",
-        "header": [],
-        "body": {},
-        "description": ""
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8888/order/1/addItem/1",
-      "request": {
-        "url": "localhost:8888/order/1/addItem/1",
-        "method": "PUT",
-        "header": [],
-        "body": {},
-        "description": ""
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8888/item",
-      "request": {
-        "url": "localhost:8888/item",
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "description": ""
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n\t\"name\": \"keyboard\",\n\t\"price\": \"99.99\"\n}"
-        },
-        "description": ""
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8888/order/1/pay",
-      "request": {
-        "url": "localhost:8888/order/1/pay",
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "description": ""
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "\"99.99\""
-        },
-        "description": ""
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8888/item/update/1/120.00",
-      "request": {
-        "url": "localhost:8888/item/update/1",
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json",
-            "description": ""
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "\"121.22\""
-        },
-        "description": ""
-      },
-      "response": []
-    },
-    {
-      "name": "localhost:8888/item",
-      "request": {
-        "url": "localhost:8888/item",
-        "method": "GET",
-        "header": [],
-        "body": {},
-        "description": ""
-      },
-      "response": []
-    }
-  ]
+	"info": {
+		"name": "AnsTest",
+		"_postman_id": "1f843249-aa02-eadd-6e8f-b71f5c150e3f",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8888/order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8888/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8888/order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8888/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8888/order/1/addItem/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8888/order/1/addItem/1/quantity/10",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"order",
+						"1",
+						"addItem",
+						"1",
+						"quantity",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8888/item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"keyboard\",\n\t\"price\": \"99.99\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8888/item",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8888/order/1/pay",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"99.99\""
+				},
+				"url": {
+					"raw": "localhost:8888/order/1/pay",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"order",
+						"1",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8888/item/update/1/120.00",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"200.00\""
+				},
+				"url": {
+					"raw": "localhost:8888/item/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"item",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8888/item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8888/item",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }

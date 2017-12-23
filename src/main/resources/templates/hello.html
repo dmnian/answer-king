@@ -7,17 +7,52 @@
 </head>
 
 <body>
+    <h3>create item</h3>
     <div>
-        <p class="greeting-id">The ID is </p>
-        <p class="greeting-content">The content is </p>
-        
-        
+        <label>name</label>
         <input type="text" id="name"></input>
+        <label>price</label>
         <input type="text" id="price"></input>
         
         <button type="submit" id="send-item">Send</button>
     </div>
 
-    <p id='item-status'></p>
+    <p id="item-status"></p>
+    
+    <h3>create new order</h3>
+    <div>        
+        <button type="submit" id="create-order">Send</button>
+    </div>
+
+    <p id='order-status'></p>
+
+    <h3>add item to the order</h3>
+    <div>
+            <label>item id</label>
+            <input type="text" id="item-id"></input>
+
+            <label>order id</label>
+            <input type="text" id="order-id"></input> 
+
+            <label>quantity id</label>
+            <input type="text" id="quantity"></input>      
+        <button type="submit" id="add-item-order">Send</button>
+    </div>
+    
+    <p id='item-order-status'></p>
+
+    <h3>update item price</h3>
+    <div>
+            <label>item id</label>
+            <input type="text" id="update-item-id"></input>
+
+            <label>updated item price</label>
+            <input type="text" id="updated-item-price"></input> 
+   
+        <button type="submit" id="update-item">Send</button>
+    </div>
+    
+    <p id='update-item-status'></p>
+
 </body>
 </html>
