@@ -1,11 +1,13 @@
 package answer.king.service;
 
 import answer.king.model.Item;
+import answer.king.model.LineItem;
 import answer.king.model.Order;
 import answer.king.model.Receipt;
 import answer.king.repo.ItemRepository;
 import answer.king.repo.OrderRepository;
 import answer.king.repo.ReceiptRepository;
+import com.google.common.primitives.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,8 +42,13 @@ public class OrderService {
         Order order = orderRepository.findOne(id);
         Item item = itemRepository.findOne(itemId);
 
-        item.setOrder(order);
-        order.getItems().add(item);
+        LineItem lineItem = new LineItem();
+        lineItem.setItem(item);
+        lineItem.setOrder(order);
+        lineItem.setQuantity(1);
+        lineItem.setCurrentPrice(item.getPrice());
+
+        order.getLineItems().add(lineItem);
 
         orderRepository.save(order);
     }
@@ -53,7 +60,7 @@ public class OrderService {
         receipt.setPayment(payment);
         receipt.setOrder(order);
 
-        if (receipt.getChange().compareTo(new BigDecimal("0.00")) != -1) {
+        if (receipt.getChange().compareTo(BigDecimal.ZERO) != -1) {
             order.setPaid(true);
         } else {
             throw new RuntimeException("Not enough money exception");

@@ -14,36 +14,36 @@ import javax.persistence.Table;
 @Table(name = "T_ORDER")
 public class Order {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	private Boolean paid = false;
+    private Boolean paid = false;
 
-	@OneToMany(mappedBy = "order", cascade = { CascadeType.ALL, CascadeType.PERSIST })
-	private List<Item> items;
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    private List<LineItem> lineItems;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Boolean getPaid() {
-		return paid;
-	}
+    public Boolean getPaid() {
+        return paid;
+    }
 
-	public void setPaid(Boolean paid) {
-		this.paid = paid;
-	}
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
+    }
 
-	public List<Item> getItems() {
-		return items;
-	}
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
 
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
 }

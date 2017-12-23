@@ -1,6 +1,7 @@
 package answer.king.service;
 
 import answer.king.model.Item;
+import answer.king.model.LineItem;
 import answer.king.model.Order;
 import answer.king.model.Receipt;
 import answer.king.repo.ItemRepository;
@@ -51,8 +52,8 @@ public class OrderServiceTest {
     public void addItemTest() throws Exception {
         Order order = new Order();
 
-        ArrayList<Item> items = new ArrayList<>();
-        order.setItems(items);
+        ArrayList<LineItem> items = new ArrayList<>();
+        order.setLineItems(items);
 
         Item item = new Item();
 
@@ -61,7 +62,6 @@ public class OrderServiceTest {
 
         orderService.addItem(1L, 1L);
 
-        assertEquals(order, item.getOrder());
         assertEquals(1, items.size());
 
         verify(orderRepositoryMock, times(1)).save(order);
@@ -70,7 +70,7 @@ public class OrderServiceTest {
     @Test
     public void payTest() throws Exception {
         Order order = new Order();
-        order.setItems(new ArrayList<>());
+        order.setLineItems(new ArrayList<>());
 
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
 
@@ -87,10 +87,9 @@ public class OrderServiceTest {
     public void shouldUpdatePaidFlagInOrder() throws Exception {
         Order order = new Order();
 
-        Item item = new Item();
-        item.setPrice(new BigDecimal("99.00"));
-
-        order.setItems(Arrays.asList(item));
+        LineItem lineItem = new LineItem();
+        lineItem.setCurrentPrice(new BigDecimal("99.00"));
+        order.setLineItems(Arrays.asList(lineItem));
 
 
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
@@ -105,11 +104,9 @@ public class OrderServiceTest {
         thrown.expect(RuntimeException.class);
         Order order = new Order();
 
-        Item item = new Item();
-        item.setPrice(new BigDecimal("100.00"));
-
-        order.setItems(Arrays.asList(item));
-
+        LineItem lineItem = new LineItem();
+        lineItem.setCurrentPrice(new BigDecimal("100.00"));
+        order.setLineItems(Arrays.asList(lineItem));
 
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
 
@@ -121,15 +118,37 @@ public class OrderServiceTest {
     public void shouldSaveReceipt() throws Exception {
         Order order = new Order();
 
-        Item item = new Item();
-        item.setPrice(new BigDecimal("100.00"));
-
-        order.setItems(Arrays.asList(item));
+        LineItem lineItem = new LineItem();
+        lineItem.setCurrentPrice(new BigDecimal("100.00"));
+        order.setLineItems(Arrays.asList(lineItem));
 
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
 
         orderService.pay(1L, new BigDecimal("100.00"));
 
         verify(receiptRepositoryMock, times(1)).save(any(Receipt.class));
+    }
+
+    @Test
+    public void shouldCalculateChangeWithRightPrice() throws Exception {
+
+        Item item = new Item();
+        item.setPrice(new BigDecimal("20.00"));
+
+        LineItem lineItem = new LineItem();
+        lineItem.setItem(item);
+        lineItem.setCurrentPrice(new BigDecimal("22.00"));
+
+        ArrayList<LineItem> lineItems = new ArrayList<>();
+        lineItems.add(lineItem);
+
+        Order order = new Order();
+        order.setLineItems(lineItems);
+
+        Receipt receipt = new Receipt();
+        receipt.setOrder(order);
+        receipt.setPayment(new BigDecimal("22.00"));
+
+        assertEquals(new BigDecimal("0.00"), receipt.getChange());
     }
 }

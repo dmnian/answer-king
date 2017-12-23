@@ -66,7 +66,7 @@ public class OrderControllerTest {
         BigDecimal payment = new BigDecimal("99.99");
         Receipt t = new Receipt();
         Order order = new Order();
-        order.setItems(new ArrayList<>());
+        order.setLineItems(new ArrayList<>());
         t.setOrder(order);
         t.setPayment(payment);
 
