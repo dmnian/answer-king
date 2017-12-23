@@ -56,6 +56,7 @@ public class OrderServiceTest {
         order.setLineItems(items);
 
         Item item = new Item();
+        item.setPrice(new BigDecimal("20.00"));
 
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
         when(itemRepositoryMock.findOne(anyLong())).thenReturn(item);
@@ -97,6 +98,13 @@ public class OrderServiceTest {
         assertEquals(2, items.get(0).getQuantity().intValue());
 
         verify(orderRepositoryMock, times(3)).save(order);
+    }
+
+    @Test
+    public void quantityShouldBeGreaterThanZeroException(){
+        thrown.expect(IllegalArgumentException.class);
+
+        orderService.addItem(1L, 1L, 0);
     }
 
     @Test

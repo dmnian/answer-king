@@ -39,6 +39,9 @@ public class OrderService {
     }
 
     public void addItem(Long id, Long itemId, Integer quantity) {
+        if(quantity <= 0){
+            throw new IllegalArgumentException("quantity of item must be greater than 0!");
+        }
         Order order = orderRepository.findOne(id);
         Item item = itemRepository.findOne(itemId);
 
