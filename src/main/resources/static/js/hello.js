@@ -83,6 +83,19 @@ $(document).ready(function(){
             $('#update-item-status').text("item price not updated!"); 
         })
     });
+
+    $("#pay").click(function(){
+        var orderId = $('#pay-order-id').val();
+        var payment = $('#payment').val();
+        
+        
+        var url = "http://localhost:8888/order/"+orderId+"/pay";
+        $.put(url, payment, function(data){
+            $('#payment-status').text("payment succeeds!");
+        }, function(){
+            $('#payment-status').text("payment fails!"); 
+        })
+    });
     
     
     
