@@ -18,26 +18,27 @@ import answer.king.service.OrderService;
 @RequestMapping("/order")
 public class OrderController {
 
-	@Autowired
-	private OrderService orderService;
+    @Autowired
+    private OrderService orderService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Order> getAll() {
-		return orderService.getAll();
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Order> getAll() {
+        return orderService.getAll();
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public Order create() {
-		return orderService.save(new Order());
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public Order create() {
+        return orderService.save(new Order());
+    }
 
-	@RequestMapping(value = "/{id}/addItem/{itemId}", method = RequestMethod.PUT)
-	public void addItem(@PathVariable("id") Long id, @PathVariable("itemId") Long itemId) {
-		orderService.addItem(id, itemId);
-	}
+    @RequestMapping(value = "/{id}/addItem/{itemId}/quantity/{quantity}", method = RequestMethod.PUT)
+    public void addItem(@PathVariable("id") Long id, @PathVariable("itemId") Long itemId,
+                        @PathVariable("quantity") Integer quantity) {
+        orderService.addItem(id, itemId, quantity);
+    }
 
-	@RequestMapping(value = "/{id}/pay", method = RequestMethod.PUT)
-	public Receipt pay(@PathVariable("id") Long id, @RequestBody BigDecimal payment) {
-		return orderService.pay(id, payment);
-	}
+    @RequestMapping(value = "/{id}/pay", method = RequestMethod.PUT)
+    public Receipt pay(@PathVariable("id") Long id, @RequestBody BigDecimal payment) {
+        return orderService.pay(id, payment);
+    }
 }

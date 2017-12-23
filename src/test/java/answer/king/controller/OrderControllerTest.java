@@ -55,10 +55,10 @@ public class OrderControllerTest {
     @Test
     public void addItemTest() throws Exception {
 
-        this.mockMvc.perform(put("/order/1/addItem/1"))
+        this.mockMvc.perform(put("/order/1/addItem/1/quantity/1"))
                 .andExpect(status().isOk());
 
-        verify(orderServiceMock, times(1)).addItem(1L, 1L);
+        verify(orderServiceMock, times(1)).addItem(1L, 1L, 1);
     }
 
     @Test

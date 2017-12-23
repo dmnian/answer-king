@@ -60,7 +60,7 @@ public class OrderServiceTest {
         when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
         when(itemRepositoryMock.findOne(anyLong())).thenReturn(item);
 
-        orderService.addItem(1L, 1L);
+        orderService.addItem(1L, 1L, 1);
 
         assertEquals(1, items.size());
 

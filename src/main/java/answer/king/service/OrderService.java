@@ -7,13 +7,13 @@ import answer.king.model.Receipt;
 import answer.king.repo.ItemRepository;
 import answer.king.repo.OrderRepository;
 import answer.king.repo.ReceiptRepository;
-import com.google.common.primitives.UnsignedInteger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -38,17 +38,34 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public void addItem(Long id, Long itemId) {
+    public void addItem(Long id, Long itemId, Integer quantity) {
         Order order = orderRepository.findOne(id);
         Item item = itemRepository.findOne(itemId);
 
-        LineItem lineItem = new LineItem();
-        lineItem.setItem(item);
-        lineItem.setOrder(order);
-        lineItem.setQuantity(1);
-        lineItem.setCurrentPrice(item.getPrice());
+        List<LineItem> lineItems = order.getLineItems();
 
-        order.getLineItems().add(lineItem);
+        BigDecimal totalPriceAddedItems = item.getPrice().multiply(new BigDecimal(quantity));
+
+        Optional<LineItem> first = lineItems.stream()
+                .filter(lineItem -> lineItem.getItem().getId() == itemId)
+                .findFirst();
+
+        if (first.isPresent()) {
+            LineItem lineItem = first.get();
+
+            int totalQuantity = lineItem.getQuantity() + quantity;
+            lineItem.setQuantity(totalQuantity);
+
+
+            lineItem.setCurrentPrice(lineItem.getCurrentPrice().add(totalPriceAddedItems));
+        } else {
+            LineItem lineItem = new LineItem();
+            lineItem.setItem(item);
+            lineItem.setOrder(order);
+            lineItem.setQuantity(quantity);
+            lineItem.setCurrentPrice(totalPriceAddedItems);
+            lineItems.add(lineItem);
+        }
 
         orderRepository.save(order);
     }
