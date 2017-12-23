@@ -68,6 +68,38 @@ public class OrderServiceTest {
     }
 
     @Test
+    public void addManyItemsTest() throws Exception {
+        Order order = new Order();
+
+        ArrayList<LineItem> items = new ArrayList<>();
+        order.setLineItems(items);
+
+        Item item = new Item();
+        item.setId(1L);
+        item.setPrice(new BigDecimal("20.50"));
+
+        Item item2 = new Item();
+        item2.setId(2L);
+        item2.setPrice(new BigDecimal("22.50"));
+
+        when(orderRepositoryMock.findOne(anyLong())).thenReturn(order);
+        when(itemRepositoryMock.findOne(anyLong()))
+                .thenReturn(item)
+                .thenReturn(item)
+                .thenReturn(item2);
+
+        orderService.addItem(1L, 1L, 1);
+        orderService.addItem(1L, 1L, 1);
+        orderService.addItem(1L, 2L, 4);
+
+        assertEquals(2, items.size());
+        assertEquals(4, items.get(1).getQuantity().intValue());
+        assertEquals(2, items.get(0).getQuantity().intValue());
+
+        verify(orderRepositoryMock, times(3)).save(order);
+    }
+
+    @Test
     public void payTest() throws Exception {
         Order order = new Order();
         order.setLineItems(new ArrayList<>());
