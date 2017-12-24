@@ -162,8 +162,11 @@ $("#pay").click(function(){
     var url = "http://localhost:8888/order/"+orderId+"/pay";
     $.put(url, payment, function(data){
         $('#payment-status').text("payment succeeds!");
-    }, function(){
-        $('#payment-status').text("payment fails!"); 
+    }, function(data){
+        // $('#payment-status').text("payment fails!"); 
+        var errorMessage =  $.parseJSON(data.responseText);
+        console.log(errorMessage.message);
+        $('#payment-status').text(errorMessage.message); 
     })
 });
 

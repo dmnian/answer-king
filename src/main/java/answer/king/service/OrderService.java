@@ -76,6 +76,10 @@ public class OrderService {
     public Receipt pay(Long id, BigDecimal payment) {
         Order order = orderRepository.findOne(id);
 
+        if(order.getPaid()){
+            throw new RuntimeException("Order has been already paid");
+        }
+
         Receipt receipt = new Receipt();
         receipt.setPayment(payment);
         receipt.setOrder(order);
