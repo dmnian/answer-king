@@ -2,11 +2,27 @@
 <html>
 <head>
     <title>Hello jQuery</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script src="/webjars/jquery/2.2.4/jquery.min.js"></script>    
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/hello.js"></script>
+    
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 
-<body>
+<body class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">AnswerKing</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/swagger-ui.html">swagger</a></li>
+                <li><a href="/h2">h2 console</a></li>
+            </ul>
+        </div>
+    </nav>
     
     <div> 
         <h3>create item</h3>
@@ -15,7 +31,7 @@
         <label>price</label>
         <input type="text" id="price"></input>
         
-        <button type="submit" id="send-item">Send</button>
+        <button type="submit" id="send-item">create</button>
     </div>
     
     <p id="item-status"></p>
@@ -29,13 +45,13 @@
         <label>updated item price</label>
         <input type="text" id="updated-item-price"></input> 
         
-        <button type="submit" id="update-item">Send</button>
+        <button type="submit" id="update-item">update</button>
     </div>
     
     <p id='update-item-status'></p>
     <div>
         <h3>All items</h3>
-        <table id='items-table'>
+        <table id='items-table' class="table table-striped">
             <tr>
                 <th>id</th>
                 <th>name</th>
@@ -54,7 +70,7 @@
         <input id='actual-order-id' type="hidden" value=""></input>
         
         <h3>Order position items</h3>
-        <table id='order-items-table' style="display:none">
+        <table id='order-items-table' style="display:none" class="table table-striped">
             <tr>
                 <th>id</th>
                 <th>name</th>
@@ -63,7 +79,7 @@
                 <th>currentPrice</th>
             </tr>  
         </table>
-    <br></br>
+        <br></br>
         <strong>summary: </strong><span id="summary"></span>
     </div>
     
@@ -74,28 +90,28 @@
         <input type="text" id="item-id"></input>
         
         <!-- <label>order id</label>
-        <input type="text" id="order-id"></input>  -->
+            <input type="text" id="order-id"></input>  -->
+            
+            <label>quantity</label>
+            <input type="text" id="quantity"></input>      
+            <button type="submit" id="add-item-order">add</button>
+        </div>
         
-        <label>quantity</label>
-        <input type="text" id="quantity"></input>      
-        <button type="submit" id="add-item-order">Send</button>
-    </div>
-    
-    <p id='item-order-status'></p>
-    
-    
-    
-    
-    <div>
-        <h3>pay</h3>
-
-        <label>payment</label>
-        <input type="text" id="payment"></input> 
+        <p id='item-order-status'></p>
         
-        <button type="submit" id="pay">Send</button>
-    </div>
-    
-    <p id='payment-status'></p>
-    
-</body>
-</html>
+        
+        
+        
+        <div>
+            <h3>pay</h3>
+            
+            <label>payment</label>
+            <input type="text" id="payment"></input> 
+            
+            <button type="submit" id="pay">pay</button>
+        </div>
+        
+        <p id='payment-status'></p>
+        
+    </body>
+    </html>
